@@ -18,4 +18,12 @@ public class ProjetServices {
     public Projet saveprojet(Projet projet){
         return projetRepo.save(projet);
     }
+
+    public Iterable<Projet> listAll() {
+        return projetRepo.findAll();
+    }
+
+    public Projet getProjetById(Integer projetId) {
+        return projetRepo.findById(projetId).orElse(null);
+    }
 }

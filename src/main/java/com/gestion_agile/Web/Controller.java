@@ -19,17 +19,17 @@ public class Controller {
         this.userServices=userServices;
         this.projetServices = projetServices;
     }
-    @PostMapping("/save")
+    @PostMapping("/saveUser")
     public ResponseEntity<Utilisateur> saveUser(@RequestBody Utilisateur user) {
         return  ResponseEntity.ok(user);
 
     }
-    @GetMapping("/getall")
+    @GetMapping("/getallUsers")
     public Iterable<Utilisateur> getAllUsers() {
         return userServices.listAll();
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/searchUser/{id}")
     public Utilisateur getUserById(@PathVariable Integer id) {
         return userServices.getUserById(id);
     }
@@ -43,5 +43,14 @@ public class Controller {
     @PostMapping("/saveProjet")
     public ResponseEntity<Projet> saveUser(@RequestBody Projet projet) {
         return  ResponseEntity.ok(projet);
+    }
+    @GetMapping("/getallUsers")
+    public Iterable<Projet> getAllProjects() {
+        return projetServices.listAll();
+    }
+
+    @GetMapping("/searchUser/{id}")
+    public Projet getProjetById(@PathVariable Integer id) {
+        return projetServices.getProjetById(id);
     }
 }
