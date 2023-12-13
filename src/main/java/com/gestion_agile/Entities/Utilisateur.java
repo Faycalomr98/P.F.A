@@ -16,8 +16,9 @@ import java.util.List;
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long idUtilisateur;
+    private Integer idUtilisateur;
     private String NomUtilisateur;
+    private String password;
 //    @ManyToMany(mappedBy = "user")
 //    private List<Projet> projets= new ArrayList<>();
 //    @OneToMany(mappedBy = "user")
