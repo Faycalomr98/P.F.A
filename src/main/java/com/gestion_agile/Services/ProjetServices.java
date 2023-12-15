@@ -7,6 +7,8 @@ import com.gestion_agile.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjetServices {
     private final ProjetRepo projetRepo;
@@ -19,7 +21,7 @@ public class ProjetServices {
         return projetRepo.save(projet);
     }
 
-    public Iterable<Projet> listAll() {
+    public List<Projet> listAll() {
         return projetRepo.findAll();
     }
 

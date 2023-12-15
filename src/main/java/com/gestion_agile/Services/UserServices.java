@@ -5,6 +5,8 @@ import com.gestion_agile.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServices {
  private final UserRepo userRepo;
@@ -16,7 +18,7 @@ public class UserServices {
     public Utilisateur saveUser(Utilisateur user){
      return userRepo.save(user);
  }
-    public Iterable<Utilisateur> listAll() {
+    public List<Utilisateur> listAll() {
         return userRepo.findAll();
     }
 
@@ -24,8 +26,8 @@ public class UserServices {
         return userRepo.findById(userId).orElse(null);
     }
 
-    public Utilisateur getUser(String Name, String password) {
-//        Utilisateur user = new Utilisateur();
-        return userRepo.findByNomUtilisateurAndPassword(Name, password).orElse(null);
-    }
+//    public Utilisateur getUser(String Name, String password) {
+////        Utilisateur user = new Utilisateur();
+//        return userRepo.findByNomUtilisateurAndPassword(Name, password).orElse(null);
+//    }
 }

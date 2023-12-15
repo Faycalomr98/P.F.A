@@ -1,23 +1,29 @@
 package com.gestion_agile.Web;
 
+import com.gestion_agile.Entities.EquipeScrum;
 import com.gestion_agile.Entities.Projet;
 import com.gestion_agile.Entities.Utilisateur;
+import com.gestion_agile.Services.EquipeServices;
 import com.gestion_agile.Services.ProjetServices;
 import com.gestion_agile.Services.UserServices;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
 public class Controller {
     private final UserServices userServices;
     private final ProjetServices projetServices;
+    private final EquipeServices equipeServices ;
+
     @Autowired
-    public  Controller(UserServices userServices, ProjetServices projetServices){
+    public  Controller(UserServices userServices, ProjetServices projetServices , EquipeServices equipeServices){
         this.userServices=userServices;
         this.projetServices = projetServices;
+        this.equipeServices = equipeServices;
     }
     @PostMapping("/saveUser")
     public ResponseEntity<Utilisateur> saveUser(@RequestBody Utilisateur user) {
@@ -25,7 +31,7 @@ public class Controller {
 
     }
     @GetMapping("/getallUsers")
-    public Iterable<Utilisateur> getAllUsers() {
+    public List<Utilisateur> getAllUsers() {
         return userServices.listAll();
     }
 
@@ -41,16 +47,30 @@ public class Controller {
 
 
     @PostMapping("/saveProjet")
-    public ResponseEntity<Projet> saveUser(@RequestBody Projet projet) {
+    public ResponseEntity<Projet> saveProject(@RequestBody Projet projet) {
         return  ResponseEntity.ok(projet);
     }
-    @GetMapping("/getallUsers")
-    public Iterable<Projet> getAllProjects() {
+    @GetMapping("/getallProjects")
+    public List<Projet> getAllProjects() {
         return projetServices.listAll();
     }
 
-    @GetMapping("/searchUser/{id}")
+    @GetMapping("/searchProject/{id}")
     public Projet getProjetById(@PathVariable Integer id) {
         return projetServices.getProjetById(id);
+    }
+
+    @PostMapping("/saveEquipe")
+    public ResponseEntity<EquipeScrum> saveEquipe(@RequestBody EquipeScrum equipeScrum) {
+        return  ResponseEntity.ok(equipeScrum);
+    }
+    @GetMapping("/getallEquipes")
+    public List<EquipeScrum> getAllEquips() {
+        return equipeServices.listAll();
+    }
+
+    @GetMapping("/searchEquipe/{id}")
+    public EquipeScrum getEquipeById(@PathVariable Integer id) {
+        return equipeServices.getEquipeById(id);
     }
 }
